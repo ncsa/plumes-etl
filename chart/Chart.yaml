@@ -1,0 +1,10 @@
+apiVersion: v2
+name: smokes-airflow
+description: Airflow Server for Loading Data into Smoke Plumes Project
+type: application
+version: 0.1.0
+appVersion: 1.2.0
+dependencies:
+- name: airflow
+  repository: https://airflow-helm.github.io/charts
+  version: 8.5.2

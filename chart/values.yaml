@@ -1,0 +1,12 @@
+airflow:
+  ingress:
+    enabled: true
+    web:
+      host: gies-dsrs.ncsa.illinois.edu
+      path: /smokes-airflow
+
+    annotations:
+      kubernetes.io/ingress.class: "traefik"
+  airflow:
+    config:
+      AIRFLOW__WEBSERVER__BASE_URL: 'http://gies-dsrs.ncsa.illinois.edu/smokes-airflow'
