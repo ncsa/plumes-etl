@@ -7,6 +7,12 @@ airflow:
 
     annotations:
       kubernetes.io/ingress.class: "traefik"
+  flower:
+    enabled: false
+  redis:
+    enabled: false
+  workers:
+    enabled: false
 
   airflow:
     executor: KubernetesExecutor
