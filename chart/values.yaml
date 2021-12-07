@@ -7,13 +7,12 @@ airflow:
 
     annotations:
       kubernetes.io/ingress.class: "traefik"
-  executor: KubernetesExecutor
-  images:
-    airflow:
+
+  airflow:
+    executor: KubernetesExecutor
+    image:
       pullPolicy: Always
       repository: bengal1/plumes-airflow
       tag: develop
-
-  airflow:
     config:
       AIRFLOW__WEBSERVER__BASE_URL: 'http://gies-dsrs.ncsa.illinois.edu/smokes-airflow'
