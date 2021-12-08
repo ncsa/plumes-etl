@@ -18,7 +18,7 @@ airflow:
     executor: KubernetesExecutor
     image:
       pullPolicy: Always
-      repository: bengal1/plumes-airflow
-      tag: develop
+#      repository: bengal1/plumes-airflow
+#      tag: develop
     config:
       AIRFLOW__WEBSERVER__BASE_URL: 'http://gies-dsrs.ncsa.illinois.edu/smokes-airflow'
