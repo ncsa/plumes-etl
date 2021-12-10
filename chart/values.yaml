@@ -7,15 +7,9 @@ airflow:
 
     annotations:
       kubernetes.io/ingress.class: "traefik"
-  flower:
-    enabled: false
-  redis:
-    enabled: false
-  workers:
-    enabled: false
 
   airflow:
-    executor: KubernetesExecutor
+    executor: CeleryExecutor
     config:
       AIRFLOW__WEBSERVER__BASE_URL: 'http://gies-dsrs.ncsa.illinois.edu/plumes-airflow'
   dags:
