@@ -12,10 +12,10 @@ with DAG(
     schedule_interval=None,
     catchup=False,
 ) as dag:
-    create_stage_table = PostgresOperator(
-        task_id="CreateStageTable",
+    create_plume_table = PostgresOperator(
+        task_id="CreatePlumeTable",
         postgres_conn_id="smokes-db",
-        sql="sql/plume.sql",
+        sql="sql/create_plumes_table.sql",
     )
     list_import_dir = BashOperator(
         task_id='ListImportDir',
@@ -122,4 +122,14 @@ with DAG(
             "GeoAlchemy2"
         ]
     )
-    create_stage_table >> list_import_dir >> load_plumes
+
+    copy = PostgresOperator(
+        task_id="CopyStagedData",
+        postgres_conn_id="smokes-db",
+        autocommit=False,
+        sql="sql/copy_staged_plume_data.sql",
+        params={
+            'year': "{{ dag_run.conf.get('year', '2018') }}"
+        }
+    )
+    [create_plume_table, list_import_dir] >> load_plumes >> copy
